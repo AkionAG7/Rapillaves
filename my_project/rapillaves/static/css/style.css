@@ -1,0 +1,64 @@
+.head{
+    background-color: #FF6E00;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer{
+    background-color: #FF6E00;
+    width: 100%;
+}
+
+body{
+    background: #fff;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+}
+
+table{
+    background-color: #747373;
+    border-radius: 5px;
+    border-collapse: separate;
+    border-spacing: 2px;
+    width: 100%;
+}
+
+th{
+    background-color: #FF6E00;
+}
+
+td{
+    background-color: #FF9F55;
+}
+
+.inventory_options{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn_actions{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.btn_add{
+    border: #65D731;
+    background-color: #65D731;
+    border-radius: 5px;
+}
+
+.filtro_nombre{
+    border: #F0F0F0 solid;
+    background-color: #F0F0F0;
+    border-radius: 5px;
+}

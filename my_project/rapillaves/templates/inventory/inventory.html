@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1>Inventario</h1>
+    
+        <div class="inventory_options">
+            <input class="filtro_nombre" type="text" placeholder="Buscar por nombre">
+            <button class="btn_add">Agregar producto</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>{{producto.name}}</td>
+                    <td>{{producto.price}}</td>
+                    <td>{{producto.stock}}</td>
+                    <td>
+                        <div class="btn_actions">
+                            <button>Ver</button>
+                            <button>Editar</button>
+                            <button>Eliminar</button>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No se encuentran productos registrados</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
