@@ -122,3 +122,49 @@ td{
         border-top: 1px solid rgba(255,255,255,0.3);
     }
 }
+
+
+
+/* ===== MODAL ===== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+/* caja */
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+    animation: fadeIn 0.3s ease;
+}
+
+/* cerrar */
+.close {
+    float: right;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* animación */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
