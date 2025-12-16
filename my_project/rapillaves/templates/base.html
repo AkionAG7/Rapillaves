@@ -9,9 +9,16 @@
 </head>
 <body>
     <header class="head">
-        <h1>Icono a futuro</h1>
+        <button class="hamburguer" onclick="toggleMenu()">Icono a futuro</button>
         <h2>imagen</h2>
         <h2>Rapillaves</h2>
+
+        <nav class="menu" id="menu">
+            <a href="#">Inicio</a>
+            <a href="#">Inventario</a>
+            <a href="#">Proveedores</a>
+            <a href="#">Operaciones</a>
+        </nav>
     </header>
     <main>
         {% block content %}
@@ -22,5 +29,6 @@
     <footer class="footer">
 
     </footer>
+    <script src="{% static 'js/menu.js' %}"></script>
 </body>
 </html>

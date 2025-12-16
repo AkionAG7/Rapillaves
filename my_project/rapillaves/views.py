@@ -10,3 +10,6 @@ def show_proveedores(request):
     proveedores = Proveedor.objects.all()
     context = {"proveedores": proveedores}
     return render(request, "inventory/proveedor.html", context)
+
+def show_operation_options(request):
+    return render(request, "operations/options.html")
