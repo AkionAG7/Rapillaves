@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1>Proveedores</h1>
+    
+        <div class="inventory_options">
+            <input class="filtro_nombre" type="text" placeholder="Buscar por nombre">
+            <button class="btn_add">Agregar proveedor</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for proveedor in proveedores %}
+                <tr>
+                    <td>{{proveedor.name}}</td>
+                    <td>{{proveedor.email}}</td>
+                    <td>{{proveedor.number_phone}}</td>
+                    <td>
+                        <div class="btn_actions">
+                            <button>Ver</button>
+                            <button>Editar</button>
+                            <button>Eliminar</button>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No se encuentran proveedores registrados</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
