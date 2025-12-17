@@ -1,6 +1,6 @@
-<div class="modal {% if show_mode %}active{% endif %}" id="showModal">
+<div class="modal {% if show_mode %}active{% endif %}" id="Modal">
   <div class="modal-content">
-    <a href="{% url 'inventario'%}" class="close" onclick="closeModal()">×</a>
+    <a href="{% url 'inventario' %}" class="close" onclick="closeModal()">×</a>
     <h2>Producto: {{producto.name}}</h2>
     <p>{{producto.description}}</p>
     <p>Precio: {{producto.price}}</p>

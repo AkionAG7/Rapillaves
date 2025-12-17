@@ -3,9 +3,9 @@ function toggleMenu(){
 }
 
 function openModal() {
-  document.getElementById("productModal").classList.add("active");
+  document.getElementById("Modal").classList.add("active");
 }
 
 function closeModal() {
-  document.getElementById("productModal").classList.remove("active");
+  document.getElementById("Modal").classList.remove("active");
 }

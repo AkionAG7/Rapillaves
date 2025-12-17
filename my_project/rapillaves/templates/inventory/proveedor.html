@@ -5,7 +5,7 @@
     
         <div class="inventory_options">
             <input class="filtro_nombre" type="text" placeholder="Buscar por nombre">
-            <button class="btn_add">Agregar proveedor</button>
+            <button class="btn_add" onclick="openModal()">Agregar proveedor</button>
         </div>
         <table>
             <thead>
@@ -38,4 +38,5 @@
             </tbody>
         </table>
     </div>
+{% include "inventory/modals/proveedor_create_update_modal.html" %}
 {% endblock %}

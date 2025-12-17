@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import Product, Proveedor
-from .forms import ProductForm
+from .forms import ProductForm, ProveedorForm
 
+# VISTAS PARA PRODUCTOS Y SI INVENTARIADO
 def show_inventory(request):
     productos = Product.objects.all()
     form = ProductForm()
@@ -45,10 +46,20 @@ def update_inventory(request, pk):
         "producto" : producto
     })
 
+#Vistas para los proveedores
 def show_proveedores(request):
     proveedores = Proveedor.objects.all()
-    context = {"proveedores": proveedores}
+    form = ProveedorForm()
+    context = {"proveedores": proveedores, "form": form, "edit_mode": False, "show_mode": False}
     return render(request, "inventory/proveedor.html", context)
 
+def create_proveedor(request):
+    if request.method == "POST":
+        form = ProveedorForm(request.POST)
+        if form.is_valid():
+            form.save()
+    return redirect("proveedores")
+
+#Vistas para las operaciones
 def show_operation_options(request):
     return render(request, "operations/options.html")
