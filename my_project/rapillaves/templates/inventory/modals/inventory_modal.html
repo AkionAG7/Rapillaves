@@ -1,13 +1,26 @@
-<div class="modal" id="productModal">
+<div class="modal {% if edit_mode %}active{% endif %}" id="productModal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal()">X</span>
+    <a href="{% url 'inventario'%}" class="close" onclick="closeModal()">×</a>
 
-    <h2>Nuevo producto</h2>
+    <h2>
+      {% if edit_mode %}
+        Editar producto
+      {% else %}
+        Nuevo producto
+      {% endif %}
+    </h2>
 
-    <form method="post" action="{% url 'inventory_create' %}">
+    <form method="post"
+      action="{% if edit_mode %}
+                {% url 'inventory_update' producto.id %}
+              {% else %}
+                {% url 'inventory_create' %}
+              {% endif %}">
+
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Guardar</button>
+
+      <a href="{% url 'inventario' %}" type="submit">Guardar</a>
     </form>
   </div>
 </div>
