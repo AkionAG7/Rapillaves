@@ -2,7 +2,14 @@
     background-color: #FF6E00;
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.head-container{
+    display: flex;
     flex-direction: row;
+    gap: 20px;
 }
 
 .hamburger{
@@ -10,7 +17,6 @@
     background: none;
     border: none;
     color: white;
-    cursor: pointer;
     display: none;
 }
 
@@ -18,12 +24,19 @@
     display: flex;
     gap: 20px;
     width: 100%;
+    justify-content: center;
+    padding: 10px;
 }
 
 .menu a{
     color: white;
     text-decoration: none;
     font-weight: bold;
+}
+
+.menu a:hover{
+    color: black;
+    font-size: 1.2rem;
 }
 
 
@@ -95,6 +108,7 @@ td{
 @media (max-width: 768px){
     .hamburger{
         display: block;
+        cursor: pointer;
     }
 
     .head{
