@@ -53,12 +53,41 @@ def show_proveedores(request):
     context = {"proveedores": proveedores, "form": form, "edit_mode": False, "show_mode": False}
     return render(request, "inventory/proveedor.html", context)
 
+def show_proveedor(request, pk):
+    proveedores= Proveedor.objects.all()
+    proveedor = get_object_or_404(Proveedor, pk = pk)
+    context= {"proveedores": proveedores,
+            "proveedor": proveedor,
+            "form": ProveedorForm(instance= proveedor),
+            "edit_mode": False,
+            "show_mode": True}
+    return render(request,"inventory/proveedor.html",context )
+
 def create_proveedor(request):
     if request.method == "POST":
         form = ProveedorForm(request.POST)
         if form.is_valid():
             form.save()
     return redirect("proveedores")
+
+def update_proveedores(request, pk):
+    proveedor = get_object_or_404(Proveedor, pk = pk)
+    if request.method == "POST":
+        form = ProveedorForm(request.POST, instance=proveedor)
+        if form.is_valid():
+            form.save()
+            return redirect("proveedores")
+    else:
+        form = ProveedorForm(instance=proveedor)
+    proveedores = Proveedor.objects.all()
+    context ={
+        "proveedores": proveedores,
+        "proveedor" :proveedor,
+        "form": form,
+        "edit_mode": True,
+        "show_mode": False
+    }
+    return render(request,"inventory/proveedor.html", context)
 
 #Vistas para las operaciones
 def show_operation_options(request):

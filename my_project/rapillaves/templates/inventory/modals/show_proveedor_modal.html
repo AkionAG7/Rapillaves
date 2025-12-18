@@ -1,0 +1,11 @@
+<div class="modal {% if show_mode %}active{% endif %}" id="Modal">
+  <div class="modal-content">
+    <a href="{% url 'proveedores'%}" class="close" onclick="closeModal()">×</a>
+    <h2>{{proveedor.name}}</h2>
+    <p>{{proveedor.email}}</p>
+    <p>{{proveedor.phone_number}}</p>
+    <p>{{proveedor.address}}</p>
+      <button href="{% url 'proveedores' %}" type="submit">Guardar</button>
+    </form>
+  </div>
+</div>

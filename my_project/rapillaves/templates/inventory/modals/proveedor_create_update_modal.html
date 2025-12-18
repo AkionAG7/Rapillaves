@@ -10,7 +10,7 @@
     </h2>
     <form method="post"
       action="{% if edit_mode %}
-                
+                {% url 'proveedor_update' proveedor.id%}
               {% else %}
                 {% url 'proveedor_create' %}
               {% endif %}">

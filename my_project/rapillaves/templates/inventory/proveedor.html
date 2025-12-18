@@ -24,8 +24,8 @@
                     <td>{{proveedor.number_phone}}</td>
                     <td>
                         <div class="btn_actions">
-                            <button>Ver</button>
-                            <button>Editar</button>
+                            <a href="{% url 'proveedor' proveedor.id %}">Ver</a>
+                            <a href="{% url 'proveedor_update' proveedor.id %}">Editar</a>
                             <button>Eliminar</button>
                         </div>
                     </td>
@@ -39,4 +39,5 @@
         </table>
     </div>
 {% include "inventory/modals/proveedor_create_update_modal.html" %}
+{% include "inventory/modals/show_proveedor_modal.html" %}
 {% endblock %}
