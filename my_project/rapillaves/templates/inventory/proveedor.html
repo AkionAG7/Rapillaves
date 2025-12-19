@@ -24,9 +24,15 @@
                     <td>{{proveedor.number_phone}}</td>
                     <td>
                         <div class="btn_actions">
-                            <a href="{% url 'proveedor' proveedor.id %}">Ver</a>
-                            <a href="{% url 'proveedor_update' proveedor.id %}">Editar</a>
-                            <button>Eliminar</button>
+                            <a href="{% url 'proveedor' proveedor.id %}">
+                                <i class="fa-solid fa-eye" style="color: #0a0a0a;"></i>
+                            </a>
+                            <a href="{% url 'proveedor_update' proveedor.id %}">
+                                <i class="fa-solid fa-pen-to-square" style="color: #030303;"></i>
+                            </a>
+                            <a>
+                                <i class="fa-solid fa-delete-left" style="color: #000000;"></i>
+                            </a>
                         </div>
                     </td>
                 </tr>

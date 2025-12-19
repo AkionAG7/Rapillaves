@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% load icons %}
 {% block content %}
     <div class="container">
         <h1>Inventario</h1>
     
         <div class="inventory_options">
             <input class="filtro_nombre" type="text" placeholder="Buscar por nombre">
-            <a class="btn_add" onclick="openModal()">Agregar producto</a>
+            <button class="btn_add" onclick="openModal()">Agregar producto</button>
         </div>
         <table>
             <thead>
@@ -20,13 +21,19 @@
                 {% for producto in productos %}
                 <tr>
                     <td>{{producto.name}}</td>
-                    <td>{{producto.price}}</td>
+                    <td>{{producto.price}} CRC</td>
                     <td>{{producto.stock}}</td>
                     <td>
                         <div class="btn_actions">
-                            <a href="{% url 'producto' producto.id %}">Ver</a>
-                            <a href="{% url 'inventory_update' producto.id %}">Editar</a>
-                            <button>Eliminar</button>
+                            <a href="{% url 'producto' producto.id %}">
+                                <i class="fa-solid fa-eye" style="color: #0a0a0a;"></i>
+                            </a>
+                            <a href="{% url 'inventory_update' producto.id %}">
+                                <i class="fa-solid fa-pen-to-square" style="color: #030303;"></i>
+                            </a>
+                            <a href="#">
+                                <i class="fa-solid fa-delete-left" style="color: #000000;"></i>
+                            </a>
                         </div>
                     </td>
                 </tr>

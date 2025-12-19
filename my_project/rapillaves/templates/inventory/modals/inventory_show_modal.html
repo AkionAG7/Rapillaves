@@ -2,7 +2,7 @@
   <div class="modal-content">
     <a href="{% url 'inventario' %}" class="close" onclick="closeModal()">×</a>
     <h2>Producto: {{producto.name}}</h2>
-    <p>{{producto.description}}</p>
+    <p>Descripción: {{producto.description}}</p>
     <p>Precio: {{producto.price}}</p>
     <p>Cantidad en stock: {{producto.stock}}</p>
   </div>

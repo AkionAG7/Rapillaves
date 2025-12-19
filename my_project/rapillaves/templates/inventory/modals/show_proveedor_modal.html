@@ -1,11 +1,10 @@
 <div class="modal {% if show_mode %}active{% endif %}" id="Modal">
   <div class="modal-content">
     <a href="{% url 'proveedores'%}" class="close" onclick="closeModal()">×</a>
-    <h2>{{proveedor.name}}</h2>
-    <p>{{proveedor.email}}</p>
-    <p>{{proveedor.phone_number}}</p>
-    <p>{{proveedor.address}}</p>
-      <button href="{% url 'proveedores' %}" type="submit">Guardar</button>
+    <h2>Proveedor: {{proveedor.name}}</h2>
+    <p>Correo: {{proveedor.email}}</p>
+    <p>Teléfono: {{proveedor.phone_number}}</p>
+    <p>Dirección: {{proveedor.address}}</p>
     </form>
   </div>
 </div>

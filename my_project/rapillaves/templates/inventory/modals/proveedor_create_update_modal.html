@@ -16,7 +16,10 @@
               {% endif %}">
       {% csrf_token %}
       {{ form.as_p }}
-      <button href="{% url 'proveedores' %}" type="submit">Guardar</button>
+      <div class="modal_options">
+        <a class="btn_cancelar" href="#">Cancelar</a>
+        <button class="btn_guardar" type="submit">Guardar</button>
+      </div>
     </form>
   </div>
 </div>
