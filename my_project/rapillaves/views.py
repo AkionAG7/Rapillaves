@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from .models import Product, Proveedor
-from .forms import ProductForm, ProveedorForm
+from .models import Product, Proveedor, Operation
+from .forms import ProductForm, ProveedorForm, SellRegisterForm,DevolutionForm
 
 # VISTAS PARA PRODUCTOS Y SI INVENTARIADO
 def show_inventory(request):
@@ -90,5 +90,31 @@ def update_proveedores(request, pk):
     return render(request,"inventory/proveedor.html", context)
 
 #Vistas para las operaciones
-def show_operation_options(request):
-    return render(request, "operations/options.html")
+def show_operations(request):
+    operations = Operation.objects.all()
+    form_sell = SellRegisterForm()
+    form_devolution = DevolutionForm()
+    context = {"operations": operations,"sell": form_sell, "devolution":form_devolution ,"show_mode" : False}
+    return render(request, "operations/operations.html", context)
+
+def SellRegister(request):
+    if request.method == "POST":
+        form_sell = SellRegisterForm(request.POST)
+        if form_sell.is_valid():
+            form_sell.save()
+            return redirect("operations")
+    context = {"operations": Operation.objects.all(),"sell": form_sell,
+            "devolution":DevolutionForm() ,"show_mode" : False}
+    return render(request, "operations/operations.html", context)
+
+def DevolutionRegister(request):
+    if request.method == "POST":
+        form_devolution = DevolutionForm(request.POST)
+        if form_devolution.is_valid():
+            form_devolution.save()
+            return redirect("operations")
+    context = {"operations": Operation.objects.all(),"sell": SellRegisterForm(),
+            "devolution":form_devolution ,"show_mode" : False}
+    return render(request, "operations/operations.html", context)
+
+

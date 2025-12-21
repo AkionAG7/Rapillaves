@@ -1,0 +1,15 @@
+<div class="modal" id="sell">
+  <div class="modal-content">
+    <a href="{% url 'operations'%}" class="close" onclick="close_specific_modal('devolution')">×</a>
+    <h2>Registrar venta</h2>
+    <form method="post"
+      action="{% url 'sell_register'%}">
+      {% csrf_token %}
+      {{ sell.as_p }}
+      <div class="modal_options">
+        <a class="btn_cancelar" href="{% url 'operations'%}">Cancelar</a>
+        <button class="btn_guardar" type="submit">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
