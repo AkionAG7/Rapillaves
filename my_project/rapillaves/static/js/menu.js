@@ -17,3 +17,4 @@ function open_especific_modal(target){
 function close_specific_modal(target) {
   document.getElementById(target).classList.remove("active");
 }
+

@@ -5,7 +5,32 @@
     <form method="post"
       action="{% url 'devolution_register'%}">
       {% csrf_token %}
-      {{ devolution.as_p }}
+      <p>
+        <label for="id_product_devolution">Producto: </label>
+        <select name="product" id="id_product_devolution" required>
+          {%for product in devolution.fields.product.queryset %}
+          <option value="{{product.id}}" data-price="{{product.price}}">
+            {{product.name}}
+          </option>
+          {% endfor %}
+        </select>
+      </p>
+
+      <label for="id_money_devolution">devolucion de dinero</label>
+      {{devolution.money_devolution}}
+
+      <label for="product_replacement">Reintegración de producto</label>
+      {{devolution.product_replacement}}
+
+      <label for="id_quantity_devolution">Unidades</label>
+      {{devolution.quantity}}
+
+      <label for="id_subtotal_devolution">Subtotal</label>
+      {{devolution.subtotal}}
+
+      <label for="id_total_devolution">Total</label>
+      {{devolution.total}}
+
       <div class="modal_options">
         <a class="btn_cancelar" href="{% url 'operations'%}">Cancelar</a>
         <button class="btn_guardar" type="submit">Guardar</button>
@@ -13,3 +38,28 @@
     </form>
   </div>
 </div>
+
+<script>
+  const productSelected_devolution = document.getElementById("id_product_devolution");
+  const quantityInput_devolution = document.getElementById("id_quantity_devolution");
+  const subtotalInput_devolution = document.getElementById("id_subtotal_devolution");
+  const totalInput_devolution = document.getElementById("id_total_devolution");
+
+  function calculateTotalsDevolution(){
+    if (!productSelected_devolution.value) return;
+
+    const price_devolution = parseFloat(
+      productSelected_devolution.selectedOptions[0].dataset.price
+    );
+    
+    const quantity_devolution = parseInt(quantityInput_devolution.value || 0);
+    const subtotal_devolution = price_devolution * quantity_devolution;
+    const total_devolution = subtotal_devolution * 1.13
+
+    subtotalInput_devolution.value= subtotal_devolution.toFixed(2);
+    totalInput_devolution.value = total_devolution.toFixed(2);
+  }
+
+  productSelected_devolution.addEventListener("change", calculateTotalsDevolution);
+  quantityInput_devolution.addEventListener("input", calculateTotalsDevolution);
+</script>

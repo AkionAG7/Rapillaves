@@ -98,6 +98,7 @@ def show_operations(request):
     return render(request, "operations/operations.html", context)
 
 def SellRegister(request):
+    form_sell = SellRegisterForm()
     if request.method == "POST":
         form_sell = SellRegisterForm(request.POST)
         if form_sell.is_valid():
@@ -108,6 +109,7 @@ def SellRegister(request):
     return render(request, "operations/operations.html", context)
 
 def DevolutionRegister(request):
+    form_devolution = DevolutionForm()
     if request.method == "POST":
         form_devolution = DevolutionForm(request.POST)
         if form_devolution.is_valid():

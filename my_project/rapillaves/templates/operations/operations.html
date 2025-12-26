@@ -27,15 +27,16 @@
             <tbody>
                 {% for operation in operations %}
                 <tr>
-                    <td>{{operation.operation_type}}</td>
+                    <td>
+                        {% if operation.operation_type %}
+                            Venta
+                        {% else %}
+                            Devolución
+                        {% endif %}
+                    </td>
                     <td>{{operation.quantity}}</td>
                     <td>{{operation.product.name}}</td>
                     <td>{{operation.total}}</td>
-                    <td>
-                        <a href="{% url 'proveedor' proveedor.id %}">
-                            <i class="fa-solid fa-eye" style="color: #0a0a0a;"></i>
-                        </a>
-                    </td>
                 </tr>
                 {% empty %}
                 <tr>

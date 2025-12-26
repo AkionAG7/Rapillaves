@@ -1,11 +1,26 @@
 <div class="modal" id="sell">
   <div class="modal-content">
-    <a href="{% url 'operations'%}" class="close" onclick="close_specific_modal('devolution')">×</a>
+    <a href="{% url 'operations'%}" class="close" onclick="close_specific_modal('sell')">×</a>
     <h2>Registrar venta</h2>
     <form method="post"
       action="{% url 'sell_register'%}">
       {% csrf_token %}
-      {{ sell.as_p }}
+      <p>
+        <label for="id_product">Producto: </label>
+        <select name="product" id="id_product" required>
+          {%for product in sell.fields.product.queryset %}
+          <option value="{{product.id}}" data-price="{{product.price}}">
+            {{product.name}}
+          </option>
+          {% endfor %}
+        </select>
+      </p>
+      <label for="id_quantity">Unidades</label>
+      {{sell.quantity}}
+      <label for="id_subtotal">Subtotal</label>
+      {{sell.subtotal}}
+      <label for="id_total">Total</label>
+      {{sell.total}}
       <div class="modal_options">
         <a class="btn_cancelar" href="{% url 'operations'%}">Cancelar</a>
         <button class="btn_guardar" type="submit">Guardar</button>
@@ -13,3 +28,28 @@
     </form>
   </div>
 </div>
+
+<script>
+  const productSelected = document.getElementById("id_product");
+  const quantityInput = document.getElementById("id_quantity");
+  const subtotalInput = document.getElementById("id_subtotal");
+  const totalInput = document.getElementById("id_total");
+
+  function calculateTotals(){
+    if (!productSelected.value) return;
+
+    const price = parseFloat(
+      productSelected.selectedOptions[0].dataset.price
+    );
+    
+    const quantity = parseInt(quantityInput.value || 0);
+    const subtotal = price * quantity;
+    const total = subtotal * 1.13
+
+    subtotalInput.value= subtotal.toFixed(2);
+    totalInput.value = total.toFixed(2);
+  }
+
+  productSelected.addEventListener("change", calculateTotals);
+  quantityInput.addEventListener("input", calculateTotals);
+</script>
