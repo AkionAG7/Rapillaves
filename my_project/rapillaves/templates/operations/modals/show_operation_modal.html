@@ -1,0 +1,53 @@
+<div class="modal {% if show_mode %}active{% endif %}" id="Modal">
+  <div class="modal-content">
+    <a href="{% url 'operations' %}" class="close" onclick="closeModal()">×</a>
+    <div class="modal-container">
+        <h2>Detalles de operación</h2>
+
+        <div class="field">
+            <label for="tipo_operacion"><strong>Tipo de operación: </strong></label>
+            <span id="tipo_operacion">
+                {% if operation.operation_type %}
+                Venta
+                {% else %}
+                Devolución
+                {% endif %}
+            </span>
+        </div>
+
+        <div class="field">
+            <label for="producto_operacion"><strong>Producto: </strong></label>
+            <span id="producto_operacion">{{operation.product}}</span>
+        </div>
+
+        {% if operation.operation_type %}
+        <div class="field">
+            <label for="cantidad_producto_operacion"><strong>Cantidad de unidades: </strong></label>
+            <span id="cantidad_producto_operacion">{{operation.quantity}}</span>
+        </div>
+        {% else %}
+            {% if operation.money_devolution %}
+                <div class="field">
+                    <label for="tipo_devolucion"><strong>Tipo de devolución: </strong></label>
+                    <span id="tipo_devolucion">Devolución de dinero</span>
+                </div>
+            {% endif %}
+            {% if operation.product_replacement %}
+                <div class="field">
+                    <label for="tipo_devolucion"><strong>Tipo de devolución: </strong></label>
+                    <span id="tipo_devolucion">Reemplazo de producto</span>
+                </div>
+            {% endif %}
+        {% endif %}
+        <div class="field">
+            <label for="subtotal_operacion"><strong>Subtotal: </strong></label>
+            <span id="subtotal_operacion">{{operation.subtotal}} CRC </span>
+        </div>
+
+        <div class="field">
+            <label for="total_operacion"><strong>Total: </strong></label>
+            <span id="total_operacion">{{operation.total}} CRC</span>
+        </div>
+    </div>
+  </div>
+</div>

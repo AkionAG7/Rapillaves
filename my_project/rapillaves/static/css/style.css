@@ -215,7 +215,17 @@ td{
     text-decoration: none;
 }
 
+.modal-container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1.2rem;
+}
 
+.modal-container h2{
+    text-align: center;
+    font-size: 1.8rem;
+}
 
 
 /* ===== MODAL ===== */

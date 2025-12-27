@@ -97,6 +97,16 @@ def show_operations(request):
     context = {"operations": operations,"sell": form_sell, "devolution":form_devolution ,"show_mode" : False}
     return render(request, "operations/operations.html", context)
 
+def show_operation(request, pk):
+    operations = Operation.objects.all()
+    operation = get_object_or_404(Operation, pk=pk)
+    context = {
+        "operations": operations,
+        "operation": operation,
+        "show_mode": True
+    }
+    return render(request, "operations/operations.html", context)
+
 def SellRegister(request):
     form_sell = SellRegisterForm()
     if request.method == "POST":

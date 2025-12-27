@@ -36,7 +36,20 @@
                     </td>
                     <td>{{operation.quantity}}</td>
                     <td>{{operation.product.name}}</td>
-                    <td>{{operation.total}}</td>
+                    <td>
+                        {% if operation.operation_type %}
+                        {{operation.total}} CRC
+                        {% else %}
+                        - {{operation.total}} CRC
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="btn_actions">
+                            <a href="{% url 'operation' operation.id %}">
+                                <i class="fa-solid fa-eye" style="color: #0a0a0a;"></i>
+                            </a>
+                        </div>
+                    </td>
                 </tr>
                 {% empty %}
                 <tr>
@@ -48,4 +61,5 @@
     </div>
 {% include "operations/modals/sell_register_modal.html"%}
 {% include "operations/modals/devolution_register_modal.html"%}
+{% include "operations/modals/show_operation_modal.html" %}
 {% endblock %}
