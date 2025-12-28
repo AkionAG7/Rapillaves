@@ -176,6 +176,9 @@ td{
     font-size: 1rem;
 }
 
+.hidden {
+    display: none;
+}
 
 /* 📱 móvil */
 @media (max-width: 768px){

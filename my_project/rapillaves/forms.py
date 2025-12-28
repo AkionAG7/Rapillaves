@@ -61,21 +61,25 @@ class DevolutionForm(forms.ModelForm):
     def clean_quantity(self):
         quantity = self.cleaned_data.get('quantity')
         product = self.cleaned_data.get('product')
-        product_replacement = self.cleaned_data.get()("product_replacement")
+        product_replacement = self.cleaned_data.get("product_replacement")
+        
+        if quantity is None or product is None:
+            return quantity
         
         if product_replacement and quantity > product.stock:
             raise forms.ValidationError(f"La cantidad '{quantity}' es mayor al stock actual, ingrese una cantidad menor")
         return quantity
     
-    def clean_devolution_option(self):
+    def clean(self):
+        cleaned_data = super().clean()
         money_devolution = self.cleaned_data.get("money_devolution")
         product_replacement = self.cleaned_data.get("product_replacement")
         
         if money_devolution and product_replacement:
             raise forms.ValidationError("No se puede seleccionar ambas opciones 'Devolucion de dinero' y 'reintegracion de producto' juntos")
-        elif money_devolution == False or product_replacement == False:
+        if not money_devolution and not product_replacement :
             raise forms.ValidationError("Debe seleccionar una opcion de devolucion")
-        return money_devolution, product_replacement
+        return cleaned_data
 
     
     def save(self, commit = True):
