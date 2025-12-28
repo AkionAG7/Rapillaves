@@ -1,25 +1,46 @@
 <div class="modal {% if edit_mode %}active{% endif %}" id="Modal">
   <div class="modal-content">
     <a href="{% url 'proveedores'%}" class="close" onclick="closeModal()">×</a>
-    <h2>
-      {% if edit_mode %}
-        Editar Proveedor
-      {% else %}
-        Nuevo proveedor
-      {% endif %}
-    </h2>
-    <form method="post"
-      action="{% if edit_mode %}
-                {% url 'proveedor_update' proveedor.id%}
-              {% else %}
-                {% url 'proveedor_create' %}
-              {% endif %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <div class="modal_options">
-        <a class="btn_cancelar" href="#">Cancelar</a>
-        <button class="btn_guardar" type="submit">Guardar</button>
-      </div>
-    </form>
+   <div class="modal-container">
+      <h2>
+        {% if edit_mode %}
+          Editar Proveedor
+        {% else %}
+          Nuevo proveedor
+        {% endif %}
+      </h2>
+      <form method="post"
+        action="{% if edit_mode %}
+                  {% url 'proveedor_update' proveedor.id%}
+                {% else %}
+                  {% url 'proveedor_create' %}
+                {% endif %}">
+        {% csrf_token %}
+        <div class="field">
+          <label for="id_name">Nombre: </label>
+          {{form.name}}
+        </div>
+
+        <div class="field">
+          <label for="id_email">Correo electrónico: </label>
+          {{form.email}}
+        </div>
+
+        <div class="field">
+          <label for="id_name">Número telefónico: </label>
+          {{form.number_phone}}
+        </div>
+
+        <div class="field">
+          <label for="id_name">Dirección: </label>
+          {{form.address}}
+        </div>
+
+        <div class="modal_options">
+          <a class="btn_cancelar" href="#">Cancelar</a>
+          <button class="btn_guardar" type="submit">Guardar</button>
+        </div>
+      </form>
+   </div>
   </div>
 </div>

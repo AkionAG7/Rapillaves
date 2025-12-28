@@ -1,9 +1,41 @@
 <div class="modal {% if show_mode %}active{% endif %}" id="Modal">
   <div class="modal-content">
     <a href="{% url 'inventario' %}" class="close" onclick="closeModal()">×</a>
-    <h2>Producto: {{producto.name}}</h2>
-    <p>Descripción: {{producto.description}}</p>
-    <p>Precio: {{producto.price}}</p>
-    <p>Cantidad en stock: {{producto.stock}}</p>
+    <div class="modal-container">
+        <h2>Detalles del producto </h2>
+
+        <div class="field">
+            <label for="product_name"><strong>Producto: </strong></label>
+            <span id="product_name">{{producto.name}}</span>
+        </div>
+
+        <div class="field">
+            <label for="producto_descripcion"><strong>Descripción: </strong></label>
+            <p id="producto_descripcion">{{producto.description}}</p>
+        </div>
+
+        <div class="field">
+            <label for="producto_precio"><strong>Precio: </strong></label>
+            <span id="producto_precio">{{producto.price}}</span>
+        </div>
+
+        <div class="field">
+            <label for="producto_stock"><strong>Stock: </strong></label>
+            <span id="producto_stock">{{producto.stock}}</span>
+        </div>
+
+        <div class="field">
+            <label for="producto_estado"><strong>Estado: </strong></label>
+            <span id="producto_estado">
+              {% if producto.status %}
+              Activo
+              {% else %}
+              Inactivo
+              {% endif %}
+            </span>
+        </div>
+
+        </div>
+    </div>
   </div>
 </div>

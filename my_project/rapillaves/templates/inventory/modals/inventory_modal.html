@@ -1,25 +1,49 @@
 <div class="modal {% if edit_mode %}active{% endif %}" id="Modal">
   <div class="modal-content">
     <a href="{% url 'inventario'%}" class="close" onclick="closeModal()">×</a>
-    <h2>
-      {% if edit_mode %}
-        Editar producto
-      {% else %}
-        Nuevo producto
-      {% endif %}
-    </h2>
-    <form method="post"
-      action="{% if edit_mode %}
-                {% url 'inventory_update' producto.id %}
-              {% else %}
-                {% url 'inventory_create' %}
-              {% endif %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <div class="modal_options">
-        <a class="btn_cancelar" href="#">Cancelar</a>
-        <button class="btn_guardar" type="submit">Guardar</button>
-      </div>
-    </form>
+    <div class="modal-container">
+        <h2>
+        {% if edit_mode %}
+          Editar producto
+        {% else %}
+          Nuevo producto
+        {% endif %}
+      </h2>
+      <form method="post"
+        action="{% if edit_mode %}
+                  {% url 'inventory_update' producto.id %}
+                {% else %}
+                  {% url 'inventory_create' %}
+                {% endif %}">
+        {% csrf_token %}
+
+        <div class="field">
+          <label for="id_name">Producto: </label>
+          {{form.name}}
+        </div>
+
+        <div class="field">
+          <label for="id_description">Descripción: </label>
+          {{form.description}}
+        </div>
+
+        <div class="field">
+          <label for="id_price">Precio: </label>
+          {{form.price}}
+        </div>
+
+        <div class="field">
+          <label for="id_stock">Stock: </label>
+          {{form.stock}}
+        </div>
+
+
+        <div class="modal_options">
+          <a class="btn_cancelar" href="#">Cancelar</a>
+          <button class="btn_guardar" type="submit">Guardar</button>
+        </div>
+
+      </form>
+    </div>
   </div>
 </div>

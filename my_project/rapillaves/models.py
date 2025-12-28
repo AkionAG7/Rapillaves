@@ -35,6 +35,7 @@ class Operation(models.Model):
     money_devolution = models.BooleanField(null=True, blank=True)
     product_replacement = models.BooleanField(null=True, blank=True)
     product = models.ForeignKey(Product, on_delete= models.CASCADE)
+    status = models.BooleanField(default=True)
     
     def __str__(self):
         return self.pk

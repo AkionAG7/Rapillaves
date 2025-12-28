@@ -5,7 +5,7 @@ from decimal import Decimal
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields= ["name", "description", "price", "stock"]
+        fields= "__all__"
         
 class ProveedorForm(forms.ModelForm):
     class Meta:
