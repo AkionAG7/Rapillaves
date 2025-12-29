@@ -45,6 +45,13 @@ def update_inventory(request, pk):
         "show_mode" : False,
         "producto" : producto
     })
+    
+def change_inventory_status(request, pk):
+    if request.method == "POST":
+        product = get_object_or_404(Product, pk = pk)
+        product.status = not product.status
+        product.save()
+    return redirect("inventario")
 
 #Vistas para los proveedores
 def show_proveedores(request):
@@ -88,6 +95,13 @@ def update_proveedores(request, pk):
         "show_mode": False
     }
     return render(request,"inventory/proveedor.html", context)
+
+def change_proveedor_status(request, pk):
+    if request.method == "POST":
+        proveedor = get_object_or_404(Proveedor, pk = pk)
+        proveedor.status = not proveedor.status
+        proveedor.save()
+    return redirect("proveedores")
 
 #Vistas para las operaciones
 def show_operations(request):

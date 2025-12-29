@@ -31,7 +31,7 @@
                             <a href="{% url 'inventory_update' producto.id %}">
                                 <i class="fa-solid fa-pen-to-square" style="color: #030303;"></i>
                             </a>
-                            <a href="#">
+                            <a href="#" class="btn-status" data-id="{{producto.id}}" data-name="{{producto.name}}">
                                 <i class="fa-solid fa-delete-left" style="color: #000000;"></i>
                             </a>
                         </div>
@@ -45,6 +45,20 @@
             </tbody>
         </table>
     </div>
+
+<script>
+document.querySelectorAll(".btn-status").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const productId = btn.dataset.id;
+    const productName = btn.dataset.name;
+
+    openStatusInventoryModal(productId, productName);
+  });
+});
+</script>
 {% include "inventory/modals/inventory_modal.html" %}
 {% include "inventory/modals/inventory_show_modal.html" %}
+{% include "inventory/modals/inventory_change_status_modal.html" %}
 {% endblock %}

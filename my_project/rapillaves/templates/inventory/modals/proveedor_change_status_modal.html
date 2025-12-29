@@ -1,0 +1,20 @@
+<div class="modal" id="modal_proveedor_status">
+  <div class="modal-content">
+    <a href="{% url 'proveedores' %}" class="close" onclick="close_specific_modal('modal_proveedor_status')">×</a>
+    <div class="modal-container">
+        <form method="POST" id="statusFormProveedor">
+            {% csrf_token %}
+            <h2 id="modal_title"></h2>
+
+            <p id="modal_text"></p>
+
+            <div class="modal_options">
+                <button class="btn_cancelar" type="button" onclick="close_specific_modal('modal_proveedor_status')">Cancelar</button>
+                <button class="btn_guardar" type="submit">Confirmar</button>
+            </div>
+        </form>
+
+        </div>
+    </div>
+  </div>
+</div>
