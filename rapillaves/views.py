@@ -3,6 +3,8 @@ from .models import Product, Proveedor, Operation
 from .forms import ProductForm, ProveedorForm, SellRegisterForm,DevolutionForm
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.utils.timezone import now
+from datetime import datetime
 
 # VISTAS PARA PRODUCTOS Y SI INVENTARIADO
 def show_inventory(request):
@@ -126,9 +128,29 @@ def change_proveedor_status(request, pk):
 #Vistas para las operaciones
 def show_operations(request):
     operations = Operation.objects.all()
+    
+    start_date = request.GET.get("start_date")
+    end_date = request.GET.get("end_date")
+    
+    if start_date and not end_date:
+        operations = operations.filter(
+            created_at__date__gte=start_date
+        )
+    elif end_date and not start_date:
+        operations = operations.filter(
+            created_at__date__lte=end_date
+        )
+    elif start_date and end_date:
+        operations = operations.filter(
+            created_at__date__range=[start_date, end_date]
+        )
+    paginator = Paginator(operations, 10)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    
     form_sell = SellRegisterForm()
     form_devolution = DevolutionForm()
-    context = {"operations": operations,"sell": form_sell, "devolution":form_devolution ,"show_mode" : False}
+    context = {"operations": page_obj,"sell": form_sell, "devolution":form_devolution ,"show_mode" : False}
     return render(request, "operations/operations.html", context)
 
 def show_operation(request, pk):

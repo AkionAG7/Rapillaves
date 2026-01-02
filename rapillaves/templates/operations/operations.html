@@ -4,11 +4,14 @@
         <h1>Operaciones</h1>
     
         <div class="inventory_options">
-            <div class="date_filter_container">
-                <input class="date_picker" type="date">
+            <form method="get" class="inventory_things">
+                <div class="date_filter_container">
+                <input class="date_picker" name="start_date" type="date" value="{{start_date}}">
                 <p>hasta</p>
-                <input class="date_picker" type="date">
+                <input class="date_picker" name="end_date" type="date" value="{{end_date}}">
+                <button type="submit" class="btn_search">Filtrar</button>
             </div>
+            </form>
             <div class="operation_options_container">
                 <a class="btn_guardar" onclick="open_especific_modal('sell')">Registrar venta</a>
                 <a class="btn_cancelar" onclick="open_especific_modal('devolution')">Registrar devolucion</a>
@@ -58,6 +61,17 @@
                 {% endfor %}
             </tbody>
         </table>
+        <div class="pagination">
+            {% if operations.has_previous %}
+                <a href="?page={{ operations.previous_page_number }}&start_date={{ start_date }}&end_date={{end_date}}">«</a>
+            {% endif %}
+
+            <span>Página {{ operations.number }} de {{ operations.paginator.num_pages }}</span>
+
+            {% if operations.has_next %}
+                <a href="?page={{ operations.next_page_number }}&start_date={{ start_date }}&end_date={{end_date}}">»</a>
+            {% endif %}
+        </div>
     </div>
 {% include "operations/modals/sell_register_modal.html"%}
 {% include "operations/modals/devolution_register_modal.html"%}

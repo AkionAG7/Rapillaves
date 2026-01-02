@@ -36,6 +36,7 @@ class Operation(models.Model):
     product_replacement = models.BooleanField(null=True, blank=True)
     product = models.ForeignKey(Product, on_delete= models.CASCADE)
     status = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.pk
