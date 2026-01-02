@@ -4,7 +4,12 @@
         <h1>Proveedores</h1>
     
         <div class="inventory_options">
-            <input class="filtro_nombre" type="text" placeholder="Buscar por nombre">
+            <form method="get" class="inventory_things">
+                <div class="busqueda_container">
+                    <input class="filtro_nombre" type="text" name="search" value="{{search}}" placeholder="Buscar por nombre">
+                    <button class="btn_search" type="submit">Buscar</button>
+                </div>
+            </form>
             <button class="btn_add" onclick="openModal()">Agregar proveedor</button>
         </div>
         <table>
@@ -43,6 +48,17 @@
                 {% endfor %}
             </tbody>
         </table>
+        <div class="pagination">
+            {% if proveedores.has_previous %}
+                <a href="?page={{ proveedores.previous_page_number }}&search={{ search }}">«</a>
+            {% endif %}
+
+            <span>Página {{ proveedores.number }} de {{ proveedores.paginator.num_pages }}</span>
+
+            {% if proveedores.has_next %}
+                <a href="?page={{ proveedores.next_page_number }}&search={{ search }}">»</a>
+            {% endif %}
+        </div>
     </div>
 <script>
 

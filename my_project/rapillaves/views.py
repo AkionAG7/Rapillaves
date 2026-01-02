@@ -1,12 +1,23 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import Product, Proveedor, Operation
 from .forms import ProductForm, ProveedorForm, SellRegisterForm,DevolutionForm
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 # VISTAS PARA PRODUCTOS Y SI INVENTARIADO
 def show_inventory(request):
+    search = request.GET.get("search", "")
     productos = Product.objects.all()
     form = ProductForm()
-    context = {"productos" : productos, "form": form, "edit_mode" : False, "show_mode": False}
+    
+    if search:
+        productos = productos.filter(
+            Q(name__icontains=search)
+        )
+    paginator = Paginator(productos, 10)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    context = {"productos" : page_obj, "form": form, "edit_mode" : False, "show_mode": False}
     return render(request ,'inventory/inventory.html', context)
 
 def show_product(request, pk):
@@ -55,9 +66,18 @@ def change_inventory_status(request, pk):
 
 #Vistas para los proveedores
 def show_proveedores(request):
+    search = request.GET.get("search", "")
     proveedores = Proveedor.objects.all()
     form = ProveedorForm()
-    context = {"proveedores": proveedores, "form": form, "edit_mode": False, "show_mode": False}
+    if search:
+        proveedores = proveedores.filter(
+            Q(name__icontains=search)
+        )
+    paginator = Paginator(proveedores, 10)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    
+    context = {"proveedores": page_obj, "form": form, "edit_mode": False, "show_mode": False}
     return render(request, "inventory/proveedor.html", context)
 
 def show_proveedor(request, pk):
